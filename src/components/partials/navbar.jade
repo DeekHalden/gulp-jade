@@ -1,0 +1,17 @@
+- var a = [{href:"index.html",title:"главная"},{href:"index.html",title:"о компании"},{href:"index.html",title:"оборудование"},{href:"index.html",title:"ингридиенты"},{href:"index.html",title:"услуги"},{	href:"index.html",title:"блог"},{href:"index.html",title:"контакты"}];
+
+header.header
+	img(src="images/slogan.png").header__heading
+	.wrapper 
+		a(href="index.html")
+			img(src="images/logo.png").header__logo
+		nav
+			ul.header__navigation
+				each el, i in a
+					li.header__navigation--element
+						a(href="#{el.href}") #{el.title}
+		.header__language_picker
+			span language:
+				select
+					each element, i in ["RU","ENG"]
+						option(value="#{element}") #{element}

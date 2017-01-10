@@ -9,9 +9,10 @@ var rename = require("gulp-rename");
  * Compile jade files into HTML
  */
 gulp.task('templates', function() {
-    return gulp.src('./src/**/index.jade')
+    return gulp.src('src/**/index.jade')
         .pipe(jade())
-        .pipe(gulp.dest('./dist/'))
+        .pipe(rename('index.html'))
+        .pipe(gulp.dest('dist/'))
         
 });
 
@@ -25,6 +26,15 @@ gulp.task('styles', () => {
             stream: true
         }))
 })
+
+gulp.task('images', () => {
+    return gulp.src('./src/**/*.png')
+        
+        
+        .pipe(gulp.dest('dist'))
+        
+})
+
 
 /**
  * Important!!
@@ -45,9 +55,9 @@ gulp.task('browserSync', function() {
 /**
  * Serve and watch the jade files for changes
  */
-gulp.task('default', ['browserSync'], function() {
+gulp.task('default', ['images', 'browserSync'], function() {
     
     gulp.watch('src/**/*.scss', ['styles-watch']);
-    gulp.watch('src/**/index.jade', ['jade-watch']);
+    gulp.watch('src/**/*.jade', ['jade-watch']);
 
 });
